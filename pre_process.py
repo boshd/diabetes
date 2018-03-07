@@ -1,4 +1,3 @@
-class Pre_Process:
-
-	def __init__(self):
+def stuff(data):
+	pass
 		

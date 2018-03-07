@@ -1,4 +1,3 @@
-class Analytics:
-
-	def __init__(self):
+def analyze(data):
+	pass
 		

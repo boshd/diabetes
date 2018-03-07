@@ -1,4 +1,3 @@
-class Metrics:
-
-	def __init__(self):
+def metr(data):
+	pass
 		

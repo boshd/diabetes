@@ -1,8 +1,3 @@
-class Prepare:
-
-	def __init__(self):
-		pass
-
-	def prep(data):
-		# do stuff w/ data
-		pass
+def prep():
+	# do stuff w/ data
+	return 5+5
