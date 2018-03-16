@@ -15,7 +15,7 @@ def main():
 
 	# Analytics
 	y = a.analyze()
-	print(y)
+	a.anomaly_detection()
 	# Metrics
 
 	# Random Stuff
