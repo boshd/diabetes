@@ -10,12 +10,10 @@ def main():
     
 	# Prepare
 	x = p.prep()
-	print(x)
 	# Pre-Process
 
 	# Analytics
-	y = a.analyze()
-	a.anomaly_detection()
+	a.anomaly_detection_fft()
 	# Metrics
 
 	# Random Stuff

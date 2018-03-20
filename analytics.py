@@ -1,42 +1,31 @@
 import matplotlib.pyplot as plt
 import scipy, math, random
-import tensorflow as tf
+#import tensorflow as tf
 import numpy as np
 
 def analyze():
-	hello = tf.constant('Hello, TensorFlow!')
+	'''hello = tf.constant('Hello, TensorFlow!')
 	sess = tf.Session()
-	return sess.run(hello)
+	return sess.run(hello)'''
+	pass
 
-def anomaly_detection():
-	# Signal Parameters
-	number_of_samples  = 1000
-	frequency_of_signal  = 5  
-	sample_time = 0.001
-	amplitude = 1   
-	
-	# Noise Parameters
-	mu = 0
-	sigma = 1
+def anomaly_detection_meidan_filtering():
+	pass
 
-	signal = [amplitude * np.sin((2 * np.pi) * frequency_of_signal * ii * sample_time) for ii in range(number_of_samples)]
-	s_time = [ii * sample_time for ii in range(number_of_samples)]
-	noise = [random.gauss(mu, sigma) for _ in range(number_of_samples)]
-	signal_with_noise = [ii + jj for ii, jj in zip(signal, noise)]
+def anomaly_detection_fft():
+	a = 1
+	x = np.arange(1,50,0.5)
+	y = np.sin(-1/x) * np.sin(x)
 
-	fft_of_signal_with_noise = np.fft.fft(signal_with_noise)
-	f = np.fft.fftfreq(len(fft_of_signal_with_noise),sample_time)
+	y_with_outlier = np.copy(y)
+	a = y
+	r = np.arange(len(x)/10, len(x), len(x)/10)
+	print(r)
 
-	def bandpass_filter(x, freq, frequency_of_signal=frequency_of_signal, band = 0.05):
-	    if (frequency_of_signal - band) < abs(freq) < (frequency_of_signal + band):
-	        return x
-	    else:
-	        return 0
+	for i in r:
+		#y_with_outlier[i] = 4 * (random.random() - 0.5 + y[i])
+		a[i] = 0
+		print(a)
 
-	F_filtered = np.asanyarray([bandpass_filter(x,freq) for x,freq in zip(fft_of_signal_with_noise, f)]);
-	filtered_signal = np.fft.ifft(F_filtered);
 
-	plt.plot(filtered_signal)
-	plt.title('Filtered Signal u/ bandpass filter')
-	plt.show()
 	
