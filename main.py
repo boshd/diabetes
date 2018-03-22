@@ -15,10 +15,11 @@ COLOR_PALETTE = [
 	    "#CF4457",
 	    "#188487",
 	    "#E24A33"]
+	    
 def main():
     
 	# Prepare
-	x = p.prep()
+	#x = p.prep()
 	# Pre-Process
 
 	# Analytics
@@ -26,6 +27,7 @@ def main():
 	# Metrics
 
 	# Random Stuff
+	'''
 	r = 1
 	x = np.arange(1,50,.5)
 	y = np.sin(-1/x) * np.sin(x)
@@ -34,7 +36,8 @@ def main():
 
 	for ii in np.arange(len(x)/10, len(x), len(x)/10.):
 	    y_with_outlier[ii]= 4*(random.random()-.5) + y[ii]
-	    outlier_positions = []
+	    
+	outlier_positions = []
 	
 	for ii in range(10, y_with_outlier.size, 5):
 	    outlier_position = a.anomaly_detection_fft(y_with_outlier[ii-5:ii+5])
@@ -46,6 +49,7 @@ def main():
 	plt.scatter(outlier_positions, y_with_outlier[np.asanyarray(outlier_positions)], c=COLOR_PALETTE[-1], label='Outliers');
 	plt.legend();
 	plt.show()
+	'''
 
 
 if __name__ == '__main__':
