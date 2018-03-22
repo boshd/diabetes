@@ -1,31 +1,26 @@
 import matplotlib.pyplot as plt
-import scipy, math, random
+import scipy, math, random, os
 #import tensorflow as tf
 import numpy as np
 
 def analyze():
-	'''hello = tf.constant('Hello, TensorFlow!')
-	sess = tf.Session()
-	return sess.run(hello)'''
 	pass
 
 def anomaly_detection_meidan_filtering():
 	pass
 
-def anomaly_detection_fft():
-	a = 1
-	x = np.arange(1,50,0.5)
-	y = np.sin(-1/x) * np.sin(x)
-
-	y_with_outlier = np.copy(y)
-	a = y
-	r = np.arange(len(x)/10, len(x), len(x)/10)
-	print(r)
-
-	for i in r:
-		#y_with_outlier[i] = 4 * (random.random() - 0.5 + y[i])
-		a[i] = 0
-		print(a)
+def anomaly_detection_fft(signal, threshold_freq=0.1, frequency_amplitude=.01):
+	fft_of_signal = np.fft.fft(signal)
+	outlier = np.max(signal) 
+	if abs(np.max(signal)) > abs(np.min(signal)):
+		print("nvm")
+	else:
+		np.min(signal)
+	if np.any(np.abs(fft_of_signal[threshold_freq:]) > frequency_amplitude):
+		index_of_outlier = np.where(signal == outlier)
+		return index_of_outlier[0]
+	else:
+		return None
 
 
 	
