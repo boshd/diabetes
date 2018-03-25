@@ -1,8 +1,23 @@
 import matplotlib.pyplot as plt
-import os, random, math, scipy
+import os, random, math, scipy, io
 import pandas as pd
 import numpy as np
 
+df = pd.read_csv("./data-01.csv", #or delim_whitespace=True, #separator is whitespace
+                 header=None, #no header
+                 usecols=[0,1,2,3], #parse only 3,4,6 columns
+                 names=['a','b','c','d']) #set columns names
+
+
+'''
+filename = './data-01.txt'
+column_names = ['x','y','z','w']
+df = pd.read_csv(filename, sep='\s+',header=None)
+
+print(df)
+'''
+
+'''
 data = pd.read_csv("datae.csv")
 ### Data extraction from csv file ###
 data.columns = ["Time", "temperature", "icon", "humidity", "visibility", "summary", "apparentTemperature", "pressure", "windSpeed", "epochTime", "windBearing", "precipIntensity", "dewPoint", "precipProbability", "Apartment1",  "Apartment2",  "Apartment3",  "Apartment4",  "Apartment5"]
@@ -27,3 +42,4 @@ apt5 = list(data.Apartment5)
 def prep():
 	# do stuff w/ data
 	pass
+'''
