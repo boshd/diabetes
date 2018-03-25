@@ -2,13 +2,28 @@ import matplotlib.pyplot as plt
 import os, random, math, scipy, io
 import pandas as pd
 import numpy as np
-
-df = pd.read_csv("./data-01.csv", #or delim_whitespace=True, #separator is whitespace
+'''
+df = pd.read_csv("./data-01", #or delim_whitespace=True, #separator is whitespace
                  header=None, #no header
                  usecols=[0,1,2,3], #parse only 3,4,6 columns
                  names=['a','b','c','d']) #set columns names
+'''
+'''
+with open('./data-01') as data:
+	plaintext = data.read()
+	data.write(plaintext.replace(',', ' '))
+'''
 
-
+f_read = open('./data-01')
+file_contents = f_read.read()
+f_write = open('./data-01', 'w')
+f_write.write(file_contents.replace('	', ', '))
+f_write.close()
+f_read = open('./data-01')
+file_contents = f_read.read()
+f_write = open('./data-01', 'w')
+f_write.write(file_contents.replace('"', ''))
+f_write.close()
 '''
 filename = './data-01.txt'
 column_names = ['x','y','z','w']
