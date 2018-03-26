@@ -7,7 +7,9 @@ import numpy as np
 
 # Attributes
 dataframe = pd.DataFrame()
+gluco_df = pd.DataFrame()
 list_ = []
+gluco_list = []
 index = 0
 
 files = [f for f in listdir("./datasets/data/") if isfile(join("./datasets/data", f)) and not f.startswith('.')]
@@ -26,6 +28,11 @@ for filename in sorted_files:
 	f_write = open(fullpath, 'w')
 	f_write.write(file_contents.replace('"', ''))
 	f_write.close()
+	f_read = open(fullpath)
+	file_contents = f_read.read()
+	f_write = open(fullpath, 'w')
+	f_write.write(file_contents.replace('0Hi', '0'))
+	f_write.close()
 	index += 1
 	print("reached file ", index)
 
@@ -38,8 +45,18 @@ for filename in sorted_files:
 	list_.append(df)
 
 dataframe = pd.concat(list_)
-print(dataframe)
+#print(dataframe)
 
+gluco_df = dataframe.loc[dataframe['CODE'] == 60]
+
+for i in gluco_df.VALUE:
+	gluco_list.append(i)
+
+print(gluco_df)
+print(gluco_list)
+
+plt.plot(gluco_list)
+plt.show()
 
 def prep():
 	# do stuff w/ data
