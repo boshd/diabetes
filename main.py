@@ -1,9 +1,11 @@
 import matplotlib.pyplot as plt
-import os, random, math, scipy
-import pre_process as pp
-import analytics as a
-import prepare as p
-import metrics.metrics as m
+import os, random, math, scipy, io
+from os.path import isfile, join
+from os import listdir
+import pre_process as pre_process
+import analytics as analytics
+import prepare as prepare
+import metrics.metrics as metrics
 import numpy as np
 
 
@@ -20,38 +22,14 @@ COLOR_PALETTE = [
 def main():
     
 	# Prepare
-	#x = p.prep()
-	# Pre-Process
+	files = [f for f in listdir("./datasets/data/") if isfile(join("./datasets/data", f)) and not f.startswith('.')]
+	prepare.prepare(files, 34)
 
 	# Analytics
-	#a.anomaly_detection_fft()
+
 	# Metrics
 
 	# Random Stuff
-	'''
-	r = 1
-	x = np.arange(1,50,.5)
-	y = np.sin(-1/x) * np.sin(x)
-
-	y_with_outlier = np.copy(y)
-
-	for ii in np.arange(len(x)/10, len(x), len(x)/10.):
-	    y_with_outlier[ii]= 4*(random.random()-.5) + y[ii]
-	    
-	outlier_positions = []
-	
-	for ii in range(10, y_with_outlier.size, 5):
-	    outlier_position = a.anomaly_detection_fft(y_with_outlier[ii-5:ii+5])
-	    if outlier_position is not None:
-	        outlier_positions.append(ii + outlier_position[0] - 5)
-	outlier_positions = list(set(outlier_positions))
-	plt.figure(figsize=(12, 6));
-	plt.scatter(range(y_with_outlier.size), y_with_outlier, c=COLOR_PALETTE[0], label='Original Signal');
-	plt.scatter(outlier_positions, y_with_outlier[np.asanyarray(outlier_positions)], c=COLOR_PALETTE[-1], label='Outliers');
-	plt.legend();
-	plt.show()
-	'''
-
 
 if __name__ == '__main__':
 	main()
