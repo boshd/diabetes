@@ -3,7 +3,7 @@ import os, random, math, scipy
 import pre_process as pp
 import analytics as a
 import prepare as p
-import metrics as m
+import metrics.metrics as m
 import numpy as np
 
 
