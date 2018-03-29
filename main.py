@@ -9,16 +9,7 @@ import metrics.metrics as metrics
 import visualize as visualize
 import numpy as np
 
-
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2' # disables TF GPU warnings
-COLOR_PALETTE = [
-		"#348ABD",
-	    "#A60628",
-	    "#7A68A6",
-	    "#467821",
-	    "#CF4457",
-	    "#188487",
-	    "#E24A33"]
 	    
 def main():
     
