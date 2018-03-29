@@ -4,7 +4,7 @@ import fix_data as fix
 import pandas as pd
 import numpy as np
 
-def prepare(files, file_index):
+def prepare(files, file_index, code):
 	# Attributes
 	dataframe = pd.DataFrame()
 	gluco_df = pd.DataFrame()
@@ -34,13 +34,14 @@ def prepare(files, file_index):
 	#else:
 	dataframe = df
 
-	gluco_df = dataframe.loc[dataframe['CODE'] == 60]
+	gluco_df = dataframe.loc[dataframe['CODE'] == code]
 
 	for i in gluco_df.VALUE:
 		gluco_list.append(i)
 
 	print(gluco_df)
 	print(gluco_list)
+	return gluco_list
 	
 
 

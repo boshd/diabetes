@@ -6,6 +6,7 @@ import pre_process as pre_process
 import analytics as analytics
 import prepare as prepare
 import metrics.metrics as metrics
+import visualize as visualize
 import numpy as np
 
 
@@ -23,7 +24,8 @@ def main():
     
 	# Prepare
 	files = [f for f in listdir("./datasets/data/") if isfile(join("./datasets/data", f)) and not f.startswith('.')]
-	prepare.prepare(files, 34)
+	prepared_data = prepare.prepare(files, 22, 57)
+	visualize.visualize(prepared_data)
 
 	# Analytics
 

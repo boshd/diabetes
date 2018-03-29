@@ -21,6 +21,5 @@ def fix_data(sorted_files, index):
 		f_write.write(file_contents.replace('0Hi', '0'))
 		f_write.close()
 		index += 1
-		print("reached file ", index)
 
 	return index;
