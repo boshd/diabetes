@@ -41,12 +41,11 @@ def prepare(sorted_files, file_index, code):
 	#print(gluco_list)
 	return dataframe
 	
-def prepare_all(files, code):
+def prepare_all(files):
 	# Attributes
 	dataframe = pd.DataFrame()
 	code_df = pd.DataFrame()
 	list_ = []
-	gluco_list = []
 	index = 0
 	i = 0
 
@@ -65,12 +64,7 @@ def prepare_all(files, code):
 
 	dataframe = pd.concat(list_)
 
-	code_df = dataframe.loc[dataframe['CODE'] == code]
-
-	for i in code_df.VALUE:
-		gluco_list.append(i)
-
-	return code_df
+	return dataframe
 
 
 

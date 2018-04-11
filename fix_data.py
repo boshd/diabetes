@@ -3,6 +3,7 @@ from os.path import isfile, join
 from os import listdir
 
 def fix_data(sorted_files, index):
+	# replacments
 	for filename in sorted_files:
 		fullpath = "./datasets/data/" + filename
 		f_read = open(fullpath)
@@ -21,5 +22,10 @@ def fix_data(sorted_files, index):
 		f_write.write(file_contents.replace('0Hi', '0'))
 		f_write.close()
 		index += 1
+
+
+
+	# checking values for anomalies
+
 
 	return index;

@@ -2,13 +2,12 @@ import os, random, math, scipy
 import pandas as pd
 import numpy as np
 
-def data_confidence(sorted_files, code):
+def data_confidence(patient, code, sorted_files):
 
 	# Attributes
-	confidence = 0;
 	length_arr = 0
-	arr_ = []
-	list_ = []
+	arr_       = []
+	list_      = []
 
 	for i in sorted_files[:70]:
 		fullpath = "./datasets/data/" + i
@@ -18,10 +17,29 @@ def data_confidence(sorted_files, code):
 	        names=['DATE','TIME','CODE','VALUE']) # set columns names
 		df_ = df.loc[df['CODE'] == code]
 		arr_.append(len(df_))
-
 	length_arr = arr_
+	avg = ((np.sum(length_arr))/(len(length_arr)))
 
-	average = ((np.sum(length_arr))/(len(length_arr)))
+	# patient
+	for i in patient.data:
+	 	patient_df = patient.data.loc[patient.data['CODE'] == code] 
 
-	return np.around(average) # supposed to return confidence but we're still figuring that out ayy
+	#print(patient_df)
 
+	'''
+
+	if len(df_) < 20:
+		print("not admissable -- this will affect the confidence metric ")
+
+	for i in length_arr:
+		index += 1
+		if i <= 10:
+			return np.around(average)
+			#supposed to return confidence but we're still figuring that out ayy
+	'''
+
+def conf(length):
+	pass
+
+def interpolate():
+	pass
