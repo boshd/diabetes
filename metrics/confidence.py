@@ -1,6 +1,8 @@
 import os, random, math, scipy
 import pandas as pd
 import numpy as np
+import scipy.interpolate as interp
+import matplotlib.pyplot as plt
 
 def data_confidence(patient, code, sorted_files):
 
@@ -9,6 +11,7 @@ def data_confidence(patient, code, sorted_files):
 	arr_       = []
 	list_      = []
 
+	# All patients
 	for i in sorted_files[:70]:
 		fullpath = "./datasets/data/" + i
 		df = pd.read_csv(fullpath, # or delim_whitespace=True, #separator is whitespace
@@ -18,28 +21,35 @@ def data_confidence(patient, code, sorted_files):
 		df_ = df.loc[df['CODE'] == code]
 		arr_.append(len(df_))
 	length_arr = arr_
-	avg = ((np.sum(length_arr))/(len(length_arr)))
+	avg_len = math.ceil(((np.sum(length_arr))/(len(length_arr))))
 
-	# patient
+	# Our patient
 	for i in patient.data:
-	 	patient_df = patient.data.loc[patient.data['CODE'] == code] 
+	 	patient_df = patient.data.loc[patient.data['CODE'] == code]
+	pat_len = len(patient_df)
+	pat_val = patient_df[['VALUE']]
 
-	#print(patient_df)
+	# Confidence Model
 
-	'''
+	threshold = avg_len * 0.6
+	if pat_len < threshold:
+		print("Data is bad - unusable\n")	
+	elif (pat_len > threshold and pat_len < avg_len):
+		print("Data is ok\n")
+		dummy = interp.InterpolatedUnivariateSpline(np.array(range(0, len(df1))), df1.values)
+		pat_val_expanded = dummy(np.linspace(0, len(df1), avg_len))
+	elif pat_len > avg_len:
+		print("Data is more than good - limit?\n")
 
-	if len(df_) < 20:
-		print("not admissable -- this will affect the confidence metric ")
 
-	for i in length_arr:
-		index += 1
-		if i <= 10:
-			return np.around(average)
-			#supposed to return confidence but we're still figuring that out ayy
-	'''
+def interpolate(y, avg_len, pat_len):
+	x = np.linspace(0, avg_len, num=pat_len)
+	x_new = np.linspace(0, avg_len)
 
-def conf(length):
-	pass
+	new_array = interp.InterpolatedUnivariateSpline(x, y)
+	print(new_array(y))
+	return new_array
 
-def interpolate():
-	pass
+def return_df(df):
+	return df
+

@@ -11,10 +11,6 @@ class Patient(object):
         self.data = data
         self.conf = conf
 
-    def displayPatient(self):
-        print("ID : ", self.id_n,  ", Conf: ", self.conf, "Data: ", self.data)
-        #df_ = df.loc[df['CODE'] == 33]
-
     def getPatientId(self):
         return self.id_n
 
