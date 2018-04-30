@@ -19,3 +19,6 @@ class Patient(object):
 
     def getPatientData(self):
         return self.data
+
+    def update_patient_data(new_data):
+        self.data = new_data

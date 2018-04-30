@@ -4,21 +4,17 @@ import numpy as np
 import scipy.interpolate as interp
 import matplotlib.pyplot as plt
 
-def data_confidence(patient, code, sorted_files):
+def data_confidence(patients, patient, code):
 
 	# Attributes
 	length_arr = 0
 	arr_       = []
 	list_      = []
+	isAnalyzable = False
 
 	# All patients
-	for i in sorted_files[:70]:
-		fullpath = "./datasets/data/" + i
-		df = pd.read_csv(fullpath, # or delim_whitespace=True, #separator is whitespace
-	        header=None, # no header
-	        usecols=[0,1,2,3], # parse only 0,1,2,3 columns
-	        names=['DATE','TIME','CODE','VALUE']) # set columns names
-		df_ = df.loc[df['CODE'] == code]
+	for i in patients[:70]:
+		df_ = i.data.loc[i.data['CODE'] == code]
 		arr_.append(len(df_))
 	length_arr = arr_
 	avg_len = math.ceil(((np.sum(length_arr))/(len(length_arr))))
@@ -27,19 +23,19 @@ def data_confidence(patient, code, sorted_files):
 	for i in patient.data:
 	 	patient_df = patient.data.loc[patient.data['CODE'] == code]
 	pat_len = len(patient_df)
-	pat_val = patient_df[['VALUE']]
+	pat_val_arr = patient_df[['VALUE']]
 
-	# Confidence Model
-
+	# Confidence Model (comparing all patients to THE patient)
 	threshold = avg_len * 0.6
 	if pat_len < threshold:
-		print("Data is bad - unusable\n")	
+		pass
 	elif (pat_len > threshold and pat_len < avg_len):
-		print("Data is ok\n")
-		dummy = interp.InterpolatedUnivariateSpline(np.array(range(0, len(df1))), df1.values)
-		pat_val_expanded = dummy(np.linspace(0, len(df1), avg_len))
+		dummy = interp.InterpolatedUnivariateSpline(np.array(range(0, len(pat_val_arr))), pat_val_arr.values)
+		pat_val_arr_expanded = dummy(np.linspace(0, len(pat_val_arr), avg_len))
+		isAnalyzable = True
 	elif pat_len > avg_len:
-		print("Data is more than good - limit?\n")
+		isAnalyzable = True
+	return isAnalyzable
 
 
 def interpolate(y, avg_len, pat_len):

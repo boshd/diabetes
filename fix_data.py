@@ -23,9 +23,6 @@ def fix_data(sorted_files, index):
 		f_write.close()
 		index += 1
 
-
-
 	# checking values for anomalies
-
 
 	return index;
