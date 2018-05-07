@@ -16,10 +16,10 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2' # disables TF GPU warnings
 def main():
 
 	# Properties
-	code = 33
+	code = 62
 
 	# Prepare patients into array
-	patients = prepare.prepare_patients()
+	patients = prepare.prepare_patients_()
 
 	# Loops through patients
 	for i in range(len(patients)):

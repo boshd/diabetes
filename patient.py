@@ -7,9 +7,9 @@ class Patient(object):
 
     # Constructor / Initaliser
     def __init__(self, id_n, data, conf):
-        self.id_n = id_n
-        self.data = data
-        self.conf = conf
+        self.id_n  = id_n
+        self.data  = data
+        self.conf  = conf
 
     def getPatientId(self):
         return self.id_n
